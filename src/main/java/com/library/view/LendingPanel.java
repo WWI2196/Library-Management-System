@@ -19,8 +19,10 @@ public class LendingPanel extends JPanel {
     private DefaultTableModel tableModel;
     private JTextField txtBookNo, txtMemberNo;
     private JButton btnIssue, btnClear;
+    private BookPanel bookPanel;
     
-    public LendingPanel() {
+    public LendingPanel(BookPanel bookPanel) {
+        this.bookPanel = bookPanel;
         controller = new LendingController();
         initComponents();
         loadLendings();
@@ -114,6 +116,7 @@ public class LendingPanel extends JPanel {
         if (controller.issueBbook(bookNo, memberNo, returnDate)) {
             loadLendings();
             clearFields();
+            bookPanel.refreshTable();
             JOptionPane.showMessageDialog(this,
                 "Book issued successfully",
                 "Success",

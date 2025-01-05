@@ -127,4 +127,27 @@ public class BookController {
         }
         return null;
     }
+    
+    /**
+     * Set book availability status
+     * @param bookNo Book number to update
+     * @param available New availability status
+     * @return true if successful, false otherwise
+     */
+    public boolean setBookAvailability(String bookNo, boolean available) {
+        String sql = "UPDATE books SET Available = ? WHERE BookNo = ?";
+        
+        try (Connection conn = DatabaseUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            
+            pstmt.setBoolean(1, available);
+            pstmt.setString(2, bookNo);
+            
+            return pstmt.executeUpdate() > 0;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

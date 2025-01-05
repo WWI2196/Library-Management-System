@@ -31,7 +31,7 @@ public class MainFrame extends JFrame {
         // Create panels
         bookPanel = new BookPanel();
         memberPanel = new MemberPanel();
-        lendingPanel = new LendingPanel();
+        lendingPanel = new LendingPanel(bookPanel);
         
         // Add panels to tabbed pane
         tabbedPane.addTab("Books", bookPanel);
