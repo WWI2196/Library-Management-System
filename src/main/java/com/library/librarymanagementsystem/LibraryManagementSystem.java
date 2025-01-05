@@ -1,28 +1,37 @@
 package com.library.librarymanagementsystem;
 
-import com.library.controller.BookController;
-import com.library.model.Book;
-import java.util.List;
+import com.library.view.MainFrame;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
+/**
+ * Main class for the Library Management System
+ * @author Your Name
+ */
 public class LibraryManagementSystem {
+    /**
+     * Main method to launch the application
+     * @param args command line arguments (not used)
+     */
     public static void main(String[] args) {
-        BookController bookController = new BookController();
-        
-        // Test getting all books
-        System.out.println("All books in library:");
-        List<Book> books = bookController.getAllBooks();
-        for (Book book : books) {
-            System.out.println(book.getBookNo() + " - " + 
-                             book.getTitle() + " by " + 
-                             book.getAuthor() + 
-                             (book.isAvailable() ? " (Available)" : " (Not Available)"));
-        }
-        
-        // Test finding a specific book
-        System.out.println("\nFinding book N123:");
-        Book foundBook = bookController.findByBookNo("N123");
-        if (foundBook != null) {
-            System.out.println("Found: " + foundBook.getTitle() + " by " + foundBook.getAuthor());
-        }
+        // Run the GUI in the Event Dispatch Thread
+        SwingUtilities.invokeLater(() -> {
+            try {
+                // Set the System look and feel
+                UIManager.setLookAndFeel(
+                    UIManager.getSystemLookAndFeelClassName()
+                );
+            } catch (ClassNotFoundException | 
+                     InstantiationException | 
+                     IllegalAccessException | 
+                     UnsupportedLookAndFeelException e) {
+                e.printStackTrace();
+            }
+            
+            // Create and display the main window
+            MainFrame mainFrame = new MainFrame();
+            mainFrame.setVisible(true);
+        });
     }
 }
