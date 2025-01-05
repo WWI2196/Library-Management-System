@@ -18,7 +18,7 @@ public class LendingPanel extends JPanel {
     private JTable lendingTable;
     private DefaultTableModel tableModel;
     private JTextField txtBookNo, txtMemberNo;
-    private JButton btnIssue, btnClear;
+    private JButton btnIssue, btnReturn, btnClear;
     private BookPanel bookPanel;
     
     public LendingPanel(BookPanel bookPanel) {
@@ -52,9 +52,11 @@ public class LendingPanel extends JPanel {
         // Add buttons
         JPanel buttonPanel = new JPanel();
         btnIssue = new JButton("Issue Book");
+        btnReturn = new JButton("Return Book");
         btnClear = new JButton("Clear");
         
         buttonPanel.add(btnIssue);
+        buttonPanel.add(btnReturn); 
         buttonPanel.add(btnClear);
         
         gbc.gridx = 0; gbc.gridy = 2;
@@ -78,6 +80,7 @@ public class LendingPanel extends JPanel {
         
         // Add button listeners
         btnIssue.addActionListener(e -> issueBook());
+        btnReturn.addActionListener(e -> returnBook());
         btnClear.addActionListener(e -> clearFields());
     }
     
@@ -129,6 +132,40 @@ public class LendingPanel extends JPanel {
                 "3. Book is not already issued",
                 "Error",
                 JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void returnBook() {
+        String bookNo = txtBookNo.getText().trim();
+        
+        if (bookNo.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                "Please enter or select a book to return",
+                "Input Error",
+                JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        int confirm = JOptionPane.showConfirmDialog(this,
+            "Are you sure you want to return this book?",
+            "Confirm Return",
+            JOptionPane.YES_NO_OPTION);
+            
+        if (confirm == JOptionPane.YES_OPTION) {
+            if (controller.returnBook(bookNo)) {
+                loadLendings();
+                clearFields();
+                bookPanel.refreshTable();
+                JOptionPane.showMessageDialog(this,
+                    "Book returned successfully",
+                    "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this,
+                    "Failed to return book. Please check if the book exists and is currently borrowed.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
     

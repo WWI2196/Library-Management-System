@@ -148,4 +148,46 @@ public class LendingController {
         }
         return null;
     }
+    
+    /**
+     * Return a book
+     * @param bookNo Book number to return
+     * @return true if successful, false otherwise
+     */
+    public boolean returnBook(String bookNo) {
+        try (Connection conn = DatabaseUtil.getConnection()) {
+            // Start transaction
+            conn.setAutoCommit(false);
+            try {
+                // First make the book available
+                String updateBookSql = "UPDATE books SET Available = TRUE WHERE BookNo = ?";
+                try (PreparedStatement pstmt = conn.prepareStatement(updateBookSql)) {
+                    pstmt.setString(1, bookNo);
+                    pstmt.executeUpdate();
+                }
+                
+                // Then delete the lending record
+                String deleteLendingSql = 
+                    "DELETE FROM lending " +
+                    "WHERE BookID = (SELECT ID FROM books WHERE BookNo = ?)";
+                try (PreparedStatement pstmt = conn.prepareStatement(deleteLendingSql)) {
+                    pstmt.setString(1, bookNo);
+                    pstmt.executeUpdate();
+                }
+                
+                conn.commit();
+                return true;
+                
+            } catch (SQLException e) {
+                conn.rollback();
+                e.printStackTrace();
+                return false;
+            } finally {
+                conn.setAutoCommit(true);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
