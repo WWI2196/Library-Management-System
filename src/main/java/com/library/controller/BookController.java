@@ -7,15 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Controller class for Book-related operations
+ * Controller class handling all book-related operations in the library management system.
+ * This class provides methods for CRUD operations on books and manages book availability.
+ * 
  * @author 22ENG 143,149,50
  */
 public class BookController {
     
     /**
-     * Add a new book to the database
-     * @param book Book to add
-     * @return true if successful, false otherwise
+     * Adds a new book to the library database.
+     *
+     * @param book The Book object containing the book details
+     * @return true if the book was successfully added, false otherwise
      */
     public boolean addBook(Book book) {
         String sql = "INSERT INTO books (BookNo, Title, Author, Available) VALUES (?, ?, ?, ?)";
@@ -45,8 +48,9 @@ public class BookController {
     }
     
     /**
-     * Get all books from the database
-     * @return List of all books
+     * Retrieves all books from the database.
+     *
+     * @return List of all books in the library
      */
     public List<Book> getAllBooks() {
         List<Book> books = new ArrayList<>();
@@ -74,9 +78,10 @@ public class BookController {
     }
     
     /**
-     * Update existing book in the database
-     * @param book Book to update
-     * @return true if successful, false otherwise
+     * Updates the details of an existing book in the database.
+     *
+     * @param book The Book object containing updated details
+     * @return true if the book was successfully updated, false otherwise
      */
     public boolean updateBook(Book book) {
         String sql = "UPDATE books SET BookNo=?, Title=?, Author=?, Available=? WHERE ID=?";
@@ -99,9 +104,10 @@ public class BookController {
     }
     
     /**
-     * Find a book by its book number
-     * @param bookNo Book number to search for
-     * @return Book if found, null otherwise
+     * Searches for a book by its book number.
+     *
+     * @param bookNo The book number to search for
+     * @return The Book object if found, null otherwise
      */
     public Book findByBookNo(String bookNo) {
         String sql = "SELECT * FROM books WHERE BookNo = ?";
@@ -130,10 +136,11 @@ public class BookController {
     }
     
     /**
-     * Set book availability status
-     * @param bookNo Book number to update
-     * @param available New availability status
-     * @return true if successful, false otherwise
+     * Updates the availability status of a book.
+     *
+     * @param bookNo The book number to update
+     * @param available The new availability status
+     * @return true if the status was successfully updated, false otherwise
      */
     public boolean setBookAvailability(String bookNo, boolean available) {
         String sql = "UPDATE books SET Available = ? WHERE BookNo = ?";
@@ -153,9 +160,10 @@ public class BookController {
     }
     
     /**
-     * Check if a book is currently lent out
-     * @param bookNo Book number to check
-     * @return true if book is lent out, false otherwise
+     * Checks if a book is currently lent out.
+     *
+     * @param bookNo The book number to check
+     * @return true if the book is currently lent out, false otherwise
      */
     public boolean isBookLent(String bookNo) {
         String sql = "SELECT COUNT(*) FROM lending l " +

@@ -4,22 +4,34 @@ import javax.swing.*;
 
 /**
  * Main application window
+ * Provides a tabbed interface for accessing Books, Members, and Lending functionality.
  * @author 22ENG 143,149,50
  */
 public class MainFrame extends JFrame {
     
+    /** Tabbed pane containing all main panels */
     private JTabbedPane tabbedPane;
+    
+    /** Panel for managing books */
     private BookPanel bookPanel;
+    
+    /** Panel for managing members */
     private MemberPanel memberPanel;
+    
+    /** Panel for managing lending operations */
     private LendingPanel lendingPanel;
     
     /**
-     * Creates the main application window
+     * Constructs the main application window and initializes all components.
      */
     public MainFrame() {
         initComponents();
     }
     
+    /**
+     * Initializes and arranges all GUI components.
+     * Sets up the tabbed interface and adds all management panels.
+     */
     private void initComponents() {
         setTitle("Library Management System");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

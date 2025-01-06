@@ -8,23 +8,60 @@ import java.awt.*;
 import java.util.List;
 
 /**
- * Panel for managing books
+ * A GUI panel for managing books in the library system.
+ * This panel provides functionality for adding, updating, and managing book availability.
+ * It displays books in a table format and provides input fields for book details.
+ * 
  * @author 22ENG 143,149,50
  */
 public class BookPanel extends JPanel {
+    /** Controller for handling book-related operations */
     private BookController controller;
-    private JTable bookTable;
-    private DefaultTableModel tableModel;
-    private JTextField txtBookNo, txtTitle, txtAuthor;
-    private JButton btnAdd, btnUpdate, btnClear;
-    private JButton btnMakeAvailable,btnMakeUnavailable;
     
+    /** Table to display the list of books */
+    private JTable bookTable;
+    
+    /** Model for the book table data */
+    private DefaultTableModel tableModel;
+    
+    /** Text field for entering/displaying book number */
+    private JTextField txtBookNo;
+    
+    /** Text field for entering/displaying book title */
+    private JTextField txtTitle;
+    
+    /** Text field for entering/displaying book author */
+    private JTextField txtAuthor;
+    
+    /** Button for adding new books */
+    private JButton btnAdd;
+    
+    /** Button for updating existing books */
+    private JButton btnUpdate;
+    
+    /** Button for clearing input fields */
+    private JButton btnClear;
+    
+    /** Button for making a book available */
+    private JButton btnMakeAvailable;
+    
+    /** Button for making a book unavailable */
+    private JButton btnMakeUnavailable;
+    
+    /**
+     * Constructs a new BookPanel.
+     * Initializes the controller and components, and loads existing books.
+     */
     public BookPanel() {
         controller = new BookController();
         initComponents();
         loadBooks();
     }
     
+    /**
+     * Initializes and arranges all GUI components of the panel.
+     * Sets up the input fields, buttons, table, and their respective event listeners.
+     */
     private void initComponents() {
         setLayout(new BorderLayout());
         
@@ -59,9 +96,6 @@ public class BookPanel extends JPanel {
         btnClear = new JButton("Clear");
         btnMakeAvailable = new JButton("Make Available");
         btnMakeUnavailable = new JButton("Make Unavailable");
-        
-        // Add action listener for Make Available button
-        btnMakeAvailable.addActionListener(e -> makeBookAvailable());
         
         buttonPanel.add(btnAdd);
         buttonPanel.add(btnUpdate);
@@ -108,6 +142,10 @@ public class BookPanel extends JPanel {
         });
     }
     
+    /**
+     * Loads all books from the database and displays them in the table.
+     * Clears the existing table data before loading new data.
+     */
     private void loadBooks() {
         tableModel.setRowCount(0);
         List<Book> books = controller.getAllBooks();
@@ -122,6 +160,10 @@ public class BookPanel extends JPanel {
         }
     }
     
+    /**
+     * Handles the addition of a new book to the system.
+     * Validates input fields and shows appropriate success or error messages.
+     */
     private void addBook() {
         String bookNo = txtBookNo.getText().trim();
         String title = txtTitle.getText().trim();
@@ -151,6 +193,11 @@ public class BookPanel extends JPanel {
         }
     }
     
+     /**
+     * Updates the details of an existing book in the system.
+     * Requires a book to be selected in the table.
+     * Validates input fields and shows appropriate success or error messages.
+     */
     private void updateBook() {
         int row = bookTable.getSelectedRow();
         if (row < 0) {
@@ -194,6 +241,11 @@ public class BookPanel extends JPanel {
         }
     }
     
+    /**
+     * Makes a selected book available for lending.
+     * Checks if the book is currently lent out before making it available.
+     * Shows appropriate success or error messages.
+     */
     private void makeBookAvailable() {
         int row = bookTable.getSelectedRow();
         if (row < 0) {
@@ -231,7 +283,10 @@ public class BookPanel extends JPanel {
         }
     }
     
-    // Add new method for making book unavailable
+    /**
+     * Makes a selected book unavailable for lending.
+     * Shows appropriate success or error messages.
+     */
     private void makeBookUnavailable() {
         int row = bookTable.getSelectedRow();
         if (row < 0) {
@@ -258,10 +313,17 @@ public class BookPanel extends JPanel {
         }
     }
     
+    /**
+     * Refreshes the book table to reflect current data in the system.
+     * This method can be called from outside the class to update the display.
+     */
     public void refreshTable() {
         loadBooks();
     }
     
+    /**
+     * Clears all input fields and deselects any selected row in the table.
+     */
     private void clearFields() {
         txtBookNo.setText("");
         txtTitle.setText("");

@@ -7,14 +7,15 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * Main class for the Library Management System application.
+ * This class initializes the GUI and sets up the application environment.
  * 
  * @author 22ENG 143,149,50
  * @version 1.0
  */
 public class LibraryManagementSystem {
     /**
-     * Main method that launches the application.
-     * Sets up the main application window.
+     * Main method that bootstraps the application.
+     * Initializes the GUI using Swing and sets the system look and feel.
      * 
      * @param args command line arguments (not used)
      */

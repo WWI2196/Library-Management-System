@@ -7,15 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Controller class for Member-related operations
+ * Controller class managing all member-related operations.
+ * Handles the business logic for member management including CRUD operations.
+ * 
  * @author 22ENG 143,149,50
  */
 public class MemberController {
     
     /**
-     * Add a new member to the database
-     * @param member Member to add
-     * @return true if successful, false otherwise
+     * Adds a new member to the system.
+     *
+     * @param member The Member object containing member details
+     * @return true if successfully added, false otherwise
      */
     public boolean addMember(Member member) {
         String sql = "INSERT INTO members (MemberNo, FirstName, LastName, PhoneNo) VALUES (?, ?, ?, ?)";
@@ -45,8 +48,9 @@ public class MemberController {
     }
     
     /**
-     * Get all members from the database
-     * @return List of all members
+     * Retrieves all members from the database.
+     *
+     * @return List of all registered members
      */
     public List<Member> getAllMembers() {
         List<Member> members = new ArrayList<>();

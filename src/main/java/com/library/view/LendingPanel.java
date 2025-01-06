@@ -10,18 +10,35 @@ import java.util.List;
 import java.util.Calendar;
 
 /**
- * Panel for managing book lending
+ * Panel for managing book lending operations.
+ * Provides interface for issuing and returning books, and viewing current lendings.
  * @author 22ENG 143,149,50
  */
 public class LendingPanel extends JPanel {
+     /** Controller for lending operations */
     private LendingController controller;
+    
+    /** Table displaying lending information */
     private JTable lendingTable;
+    
+    /** Model for the lending table */
     private DefaultTableModel tableModel;
+    
+    /** Text fields for book and member information */
     private JTextField txtBookNo, txtMemberNo;
+    
+    /** Buttons for lending operations */
     private JButton btnIssue, btnReturn, btnClear;
+    
+    /** Reference to the book panel for refreshing book status */
     private BookPanel bookPanel;
     
-    
+    /**
+     * Constructs a new LendingPanel.
+     * Initializes the controller and UI components.
+     *
+     * @param bookPanel Reference to the book panel for updates
+     */
     public LendingPanel(BookPanel bookPanel) {
         this.bookPanel = bookPanel;
         controller = new LendingController();
@@ -29,6 +46,10 @@ public class LendingPanel extends JPanel {
         loadLendings();
     }
     
+    /**
+     * Initializes and arranges all GUI components.
+     * Sets up the input fields, buttons, and lending table.
+     */
     private void initComponents() {
         setLayout(new BorderLayout());
         
@@ -85,6 +106,9 @@ public class LendingPanel extends JPanel {
         btnClear.addActionListener(e -> clearFields());
     }
     
+    /**
+     * Loads all current lendings from the database and displays them in the table.
+     */
     private void loadLendings() {
         tableModel.setRowCount(0);
         List<Lending> lendings = controller.getAllLendings();
@@ -100,6 +124,11 @@ public class LendingPanel extends JPanel {
         }
     }
     
+    /**
+     * Issues a book to a member.
+     * Validates input and shows appropriate messages.
+     * Sets return date to 14 days from current date.
+     */
     private void issueBook() {
         String bookNo = txtBookNo.getText().trim();
         String memberNo = txtMemberNo.getText().trim();
@@ -136,6 +165,11 @@ public class LendingPanel extends JPanel {
         }
     }
     
+    /**
+     * Returns a borrowed book.
+     * Validates input and shows appropriate messages.
+     * Updates book availability status.
+     */
     private void returnBook() {
         String bookNo = txtBookNo.getText().trim();
         
@@ -170,6 +204,9 @@ public class LendingPanel extends JPanel {
         }
     }
     
+    /**
+     * Clears all input fields and table selection.
+     */
     private void clearFields() {
         txtBookNo.setText("");
         txtMemberNo.setText("");

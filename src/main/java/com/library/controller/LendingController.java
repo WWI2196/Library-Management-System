@@ -9,24 +9,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Controller class for Lending-related operations
+ * Controller class managing all lending-related operations.
+ * Handles the business logic for book lending, returns, and lending history.
+ * 
  * @author 22ENG 143,149,50
+ * @version 1.0
  */
 public class LendingController {
+    /** Book controller for book-related operations */
     private BookController bookController;
+    
+    /** Member controller for member-related operations */
     private MemberController memberController;
     
+    /**
+     * Constructs a new LendingController instance.
+     * Initializes required sub-controllers.
+     */
     public LendingController() {
         this.bookController = new BookController();
         this.memberController = new MemberController();
     }
     
     /**
-     * Issue a book to a member
-     * @param bookNo Book number to lend
-     * @param memberNo Member number borrowing the book
-     * @param returnDate Expected return date
-     * @return true if successful, false otherwise
+     * Issues a book to a member.
+     *
+     * @param bookNo The book number to be issued
+     * @param memberNo The member number receiving the book
+     * @param returnDate The expected return date
+     * @return true if the book was successfully issued, false otherwise
      */
     public boolean issueBbook(String bookNo, String memberNo, Date returnDate) {
         Book book = bookController.findByBookNo(bookNo);

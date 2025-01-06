@@ -9,21 +9,39 @@ import java.util.List;
 
 /**
  * Panel for managing members
+ * Provides interface for adding, updating, and viewing member information.
  * @author 22ENG 143,149,50
  */
 public class MemberPanel extends JPanel {
+    /** Controller for member operations */
     private MemberController controller;
+    
+     /** Table displaying member information */
     private JTable memberTable;
+    
+    /** Model for the member table */
     private DefaultTableModel tableModel;
+    
+    /** Text fields for member information */
     private JTextField txtMemberNo, txtFirstName, txtLastName, txtPhoneNo;
+    
+    /** Buttons for member operations */
     private JButton btnAdd, btnUpdate, btnClear;
     
+     /**
+     * Constructs a new MemberPanel.
+     * Initializes the controller and UI components.
+     */
     public MemberPanel() {
         controller = new MemberController();
         initComponents();
         loadMembers();
     }
     
+    /**
+     * Initializes and arranges all GUI components.
+     * Sets up the input fields, buttons, and member table.
+     */
     private void initComponents() {
         setLayout(new BorderLayout());
         
@@ -105,6 +123,9 @@ public class MemberPanel extends JPanel {
         });
     }
     
+    /**
+     * Loads all members from the database and displays them in the table.
+     */
     private void loadMembers() {
         tableModel.setRowCount(0);
         List<Member> members = controller.getAllMembers();
@@ -119,6 +140,10 @@ public class MemberPanel extends JPanel {
         }
     }
     
+    /**
+     * Adds a new member using the input field values.
+     * Validates input and shows appropriate messages.
+     */
     private void addMember() {
         String memberNo = txtMemberNo.getText().trim();
         String firstName = txtFirstName.getText().trim();
@@ -149,6 +174,10 @@ public class MemberPanel extends JPanel {
         }
     }
     
+    /**
+     * Updates an existing member's information.
+     * Validates input and shows appropriate messages.
+     */
     private void updateMember() {
         int row = memberTable.getSelectedRow();
         if (row < 0) {
@@ -194,6 +223,9 @@ public class MemberPanel extends JPanel {
         }
     }
     
+    /**
+     * Clears all input fields and table selection.
+     */
     private void clearFields() {
         txtMemberNo.setText("");
         txtFirstName.setText("");
