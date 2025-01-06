@@ -30,13 +30,14 @@ public class BookController {
             
             int affectedRows = pstmt.executeUpdate();
             if (affectedRows > 0) {
-                ResultSet rs = pstmt.getGeneratedKeys();
-                if (rs.next()) {
-                    book.setId(rs.getInt(1));
+                // Get the auto-generated ID
+                try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        book.setId(generatedKeys.getInt(1));
+                        return true;
+                    }
                 }
-                return true;
             }
-            
         } catch (SQLException e) {
             e.printStackTrace();
         }

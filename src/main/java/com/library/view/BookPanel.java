@@ -17,7 +17,7 @@ public class BookPanel extends JPanel {
     private DefaultTableModel tableModel;
     private JTextField txtBookNo, txtTitle, txtAuthor;
     private JButton btnAdd, btnUpdate, btnClear;
-    private JButton btnMakeAvailable;
+    private JButton btnMakeAvailable,btnMakeUnavailable;
     
     public BookPanel() {
         controller = new BookController();
@@ -57,9 +57,8 @@ public class BookPanel extends JPanel {
         btnAdd = new JButton("Add Book");
         btnUpdate = new JButton("Update");
         btnClear = new JButton("Clear");
-         // Add Make Available button
         btnMakeAvailable = new JButton("Make Available");
-        buttonPanel.add(btnMakeAvailable);
+        btnMakeUnavailable = new JButton("Make Unavailable");
         
         // Add action listener for Make Available button
         btnMakeAvailable.addActionListener(e -> makeBookAvailable());
@@ -67,6 +66,8 @@ public class BookPanel extends JPanel {
         buttonPanel.add(btnAdd);
         buttonPanel.add(btnUpdate);
         buttonPanel.add(btnClear);
+        buttonPanel.add(btnMakeAvailable);
+        buttonPanel.add(btnMakeUnavailable);
         
         gbc.gridx = 0; gbc.gridy = 3;
         gbc.gridwidth = 2;
@@ -90,7 +91,9 @@ public class BookPanel extends JPanel {
         // Add button listeners
         btnAdd.addActionListener(e -> addBook());
         btnUpdate.addActionListener(e -> updateBook());
-        btnClear.addActionListener(e -> clearFields());
+        btnClear.addActionListener(e -> clearFields()); 
+        btnMakeAvailable.addActionListener(e -> makeBookAvailable());
+        btnMakeUnavailable.addActionListener(e -> makeBookUnavailable());
         
         // Add table selection listener
         bookTable.getSelectionModel().addListSelectionListener(e -> {
@@ -207,6 +210,33 @@ public class BookPanel extends JPanel {
             clearFields();
             JOptionPane.showMessageDialog(this,
                 "Book is now available",
+                "Success",
+                JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this,
+                "Failed to update book availability",
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    // Add new method for making book unavailable
+    private void makeBookUnavailable() {
+        int row = bookTable.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(this,
+                "Please select a book to make unavailable",
+                "Selection Error",
+                JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String bookNo = (String) tableModel.getValueAt(row, 0);
+        if (controller.setBookAvailability(bookNo, false)) {
+            loadBooks(); // Refresh the table
+            clearFields();
+            JOptionPane.showMessageDialog(this,
+                "Book is now unavailable",
                 "Success",
                 JOptionPane.INFORMATION_MESSAGE);
         } else {

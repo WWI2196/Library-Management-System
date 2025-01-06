@@ -45,13 +45,18 @@ public class LendingController {
             pstmt.setInt(2, member.getId());
             pstmt.setDate(3, returnDate);
             
-            if (pstmt.executeUpdate() > 0) {
-                // Update book availability
-                book.setAvailable(false);
-                bookController.updateBook(book);
-                return true;
+            int affectedRows = pstmt.executeUpdate();
+            if (affectedRows > 0) {
+                // Get the auto-generated ID
+                try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        // Update book availability
+                        book.setAvailable(false);
+                        bookController.updateBook(book);
+                        return true;
+                    }
+                }
             }
-            
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -1,8 +1,10 @@
 package com.library.model;
 
 /**
- * Represents a book in the library
- * @author Your Name
+ * Represents a book in the library system.
+ * 
+ * @author 22ENG 143,149,50
+ * @version 1.0
  */
 public class Book {
     private int id;
@@ -11,6 +13,13 @@ public class Book {
     private String author;
     private boolean available;
 
+    /**
+     * Creates a new Book instance.
+     * 
+     * @param bookNo unique book ID 
+     * @param title title of the book
+     * @param author author of the book
+     */
     public Book(String bookNo, String title, String author) {
         this.bookNo = bookNo;
         this.title = title;
