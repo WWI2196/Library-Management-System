@@ -151,4 +151,29 @@ public class BookController {
         }
         return false;
     }
+    
+    /**
+     * Check if a book is currently lent out
+     * @param bookNo Book number to check
+     * @return true if book is lent out, false otherwise
+     */
+    public boolean isBookLent(String bookNo) {
+        String sql = "SELECT COUNT(*) FROM lending l " +
+                    "JOIN books b ON l.BookID = b.ID " +
+                    "WHERE b.BookNo = ?";
+        
+        try (Connection conn = DatabaseUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            
+            pstmt.setString(1, bookNo);
+            ResultSet rs = pstmt.executeQuery();
+            
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

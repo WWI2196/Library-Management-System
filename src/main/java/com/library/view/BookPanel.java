@@ -205,6 +205,17 @@ public class BookPanel extends JPanel {
         }
 
         String bookNo = (String) tableModel.getValueAt(row, 0);
+        
+        // Check if book is currently lent out
+        if (controller.isBookLent(bookNo)) {
+            JOptionPane.showMessageDialog(this,
+                "Cannot make book available: Book is currently lent out.\n" +
+                "Please use the Lending panel to return the book first.",
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         if (controller.setBookAvailability(bookNo, true)) {
             loadBooks(); // Refresh the table
             clearFields();
