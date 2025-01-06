@@ -2,7 +2,7 @@ package com.library.model;
 
 /**
  * Represents a library member
- * @author Your Name
+ * @author 22ENG 143,149,50
  */
 public class Member {
     private int id;

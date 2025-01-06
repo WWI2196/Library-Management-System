@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * Panel for managing books
- * @author Your Name
+ * @author 22ENG 143,149,50
  */
 public class BookPanel extends JPanel {
     private BookController controller;

@@ -4,7 +4,7 @@ import java.sql.Date;
 
 /**
  * Represents a book lending record
- * @author Your Name
+ * @author 22ENG 143,149,50
  */
 public class Lending {
     private int id;

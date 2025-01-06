@@ -11,7 +11,7 @@ import java.util.Calendar;
 
 /**
  * Panel for managing book lending
- * @author Your Name
+ * @author 22ENG 143,149,50
  */
 public class LendingPanel extends JPanel {
     private LendingController controller;
@@ -20,6 +20,7 @@ public class LendingPanel extends JPanel {
     private JTextField txtBookNo, txtMemberNo;
     private JButton btnIssue, btnReturn, btnClear;
     private BookPanel bookPanel;
+    
     
     public LendingPanel(BookPanel bookPanel) {
         this.bookPanel = bookPanel;

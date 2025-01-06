@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 /**
  * Utility class for database operations
- * @author Your Name
+ * @author 22ENG 143,149,50
  */
 public class DatabaseUtil {
     private static final String URL = "jdbc:mysql://localhost/librarydb";

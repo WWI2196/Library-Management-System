@@ -1,0 +1,51 @@
+-J-Duser.language=
+-J-Duser.country=
+@options
+@packages
+-classpath
+'C:/Users/Wansajee/.m2/repository/com/mysql/mysql-connector-j/9.1.0/mysql-connector-j-9.1.0.jar;C:/Users/Wansajee/.m2/repository/com/google/protobuf/protobuf-java/4.26.1/protobuf-java-4.26.1.jar'
+-encoding
+'UTF-8'
+-protected
+--release
+22
+-sourcepath
+'C:/Users/Wansajee/Downloads/LibraryManagementSystem/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2025. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/Wansajee/Downloads/LibraryManagementSystem/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'LibraryManagementSystem 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'LibraryManagementSystem 1.0-SNAPSHOT API'
+com.library.controller
+com.library.librarymanagementsystem
+com.library.model
+com.library.util
+com.library.view
+C:\Users\Wansajee\.m2\repository\com\mysql\mysql-connector-j\9.1.0\mysql-connector-j-9.1.0.jar = 1736106289264
+C:\Users\Wansajee\.m2\repository\com\google\protobuf\protobuf-java\4.26.1\protobuf-java-4.26.1.jar = 1736106289857
+C:\Users\Wansajee\Downloads\LibraryManagementSystem\src\main\java = 1736108207231
+C:\Users\Wansajee\Downloads\LibraryManagementSystem\target\reports\apidocs\allclasses-index.html = 1736140335288
+C:\Users\Wansajee\Downloads\LibraryManagementSystem\target\reports\apidocs\allpackages-index.html = 1736140335293
+C:\Users\Wansajee\Downloads\LibraryManagementSystem\target\reports\apidocs\element-list = 1736140334938
+C:\Users\Wansajee\Downloads\LibraryManagementSystem\target\reports\apidocs\help-doc.html = 1736140335368
+C:\Users\Wansajee\Downloads\LibraryManagementSystem\target\reports\apidocs\index-all.html = 1736140335347
+C:\Users\Wansajee\Downloads\LibraryManagementSystem\target\reports\apidocs\index.html = 1736140335246
+C:\Users\Wansajee\Downloads\LibraryManagementSystem\target\reports\apidocs\member-search-index.js = 1736140335302
+C:\Users\Wansajee\Downloads\LibraryManagementSystem\target\reports\apidocs\module-search-index.js = 1736140335295
+C:\Users\Wansajee\Downloads\LibraryManagementSystem\target\reports\apidocs\overview-summary.html = 1736140335358
+C:\Users\Wansajee\Downloads\LibraryManagementSystem\target\reports\apidocs\overview-tree.html = 1736140335239
+C:\Users\Wansajee\Downloads\LibraryManagementSystem\target\reports\apidocs\package-search-index.js = 1736140335297
+C:\Users\Wansajee\Downloads\LibraryManagementSystem\target\reports\apidocs\search.html = 1736140335351
+C:\Users\Wansajee\Downloads\LibraryManagementSystem\target\reports\apidocs\serialized-form.html = 1736140335107
+C:\Users\Wansajee\Downloads\LibraryManagementSystem\target\reports\apidocs\tag-search-index.js = 1736140335306
+C:\Users\Wansajee\Downloads\LibraryManagementSystem\target\reports\apidocs\type-search-index.js = 1736140335299

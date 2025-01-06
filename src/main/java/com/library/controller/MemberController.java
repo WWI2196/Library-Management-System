@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Controller class for Member-related operations
- * @author Your Name
+ * @author 22ENG 143,149,50
  */
 public class MemberController {
     

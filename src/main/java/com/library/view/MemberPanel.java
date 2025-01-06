@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * Panel for managing members
- * @author Your Name
+ * @author 22ENG 143,149,50
  */
 public class MemberPanel extends JPanel {
     private MemberController controller;

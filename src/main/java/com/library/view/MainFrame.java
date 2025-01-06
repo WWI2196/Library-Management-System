@@ -4,7 +4,7 @@ import javax.swing.*;
 
 /**
  * Main application window
- * @author Your Name
+ * @author 22ENG 143,149,50
  */
 public class MainFrame extends JFrame {
     
